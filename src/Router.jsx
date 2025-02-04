@@ -8,6 +8,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import SignInPage from '@/pages/SignInPage';
 
 import App from './App';
+import StatesPracticePage from './pages/StatesPracticePage';
 
 const router = createBrowserRouter([
   {
@@ -24,10 +25,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/',
+        index: true,
         element: (
           <Route isProtected>
             <HomePage />
+          </Route>
+        ),
+      },
+      {
+        path: '/state-practice',
+        element: (
+          <Route isProtected>
+            <StatesPracticePage />
           </Route>
         ),
       },
