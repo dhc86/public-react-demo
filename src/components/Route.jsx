@@ -24,3 +24,4 @@ const Route = ({ children, isProtected }) => {
 };
 
 export default Route;
+
