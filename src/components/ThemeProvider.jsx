@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { getItem, setItem } from '../lib/utils/localStorage';
 
 const initialState = {
-  theme: 'dark',
+  theme: 'light',
   setTheme: () => null,
 };
 

@@ -107,7 +107,7 @@ const App = () => {
       <div className='fixed bottom-0 left-0 top-0'>
         <Devbar />
       </div>
-      <div className='ml-[700px]'>
+      <div className='ml-[600px]'>
         <HomePage />
       </div>
     </>
@@ -131,7 +131,7 @@ export const Step2 = () => {
       <p>
         We'll need to import <code>HomePage</code> and add it to the{' '}
         <code>App</code> component inside the <code>div</code> with the{' '}
-        <code>ml-[700px]</code> class. This will make sure that the{' '}
+        <code>ml-[600px]</code> class. This will make sure that the{' '}
         <code>Devbar</code> remains visible on the left side of the screen,
         while displaying the content on the right.
       </p>

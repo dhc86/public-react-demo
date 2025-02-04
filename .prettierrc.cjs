@@ -7,7 +7,7 @@ const config = {
   quoteProps: 'consistent',
   singleQuote: true,
   tabWidth: 2,
-  trailingComma: 'all',
+  trailingComma: 'all'
 };
 
 module.exports = config;

@@ -1,53 +1,45 @@
-import axios from 'axios';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import api from '@/api';
 import { getItem, setItem } from '@/lib/utils/localStorage';
-
-const STALE_TIME = 5 * 60 * 1000; // 5 minutes
+const STALE_TIME = 1 * 60 * 1000; // 5 minutes
 
 const useFetch = (url, options) => {
-  const [data, setData] = useState();
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const abortControllerRef = useRef(null);
+  const [error, setError] = useState(null);
 
   const storageKey = useMemo(() => {
-    if (!options?.params) {
+    if (!options) {
       return url;
     }
-
-    return url + '?' + JSON.stringify(options.params);
+    return `${url}?${JSON.stringify(options)}`;
   }, [options, url]);
 
+  // Abort controller to cancel the fetch request when component unmounts
+  const abortController = useRef(null);
+
   useEffect(() => {
+    const currentTime = new Date().getTime();
+    const cachedData = getItem(storageKey);
+    if (cachedData && currentTime - cachedData.lastFetched < STALE_TIME) {
+      setData(cachedData.data);
+      setIsLoading(false);
+      return;
+    }
+
+    abortController.current = new AbortController();
+
     const fetchData = async () => {
-      const currentTime = new Date().getTime();
-      const cachedData = getItem(storageKey);
-
-      if (cachedData && currentTime - cachedData.lastFetched < STALE_TIME) {
-        setData(cachedData.data);
-        setIsLoading(false);
-        return;
-      }
-
-      abortControllerRef.current = new AbortController();
-
-      setError(null);
-      setIsLoading(true);
-
       try {
         const response = await api.get(url, {
-          ...options,
-          signal: abortControllerRef.current?.signal,
+          params: options,
+          signal: abortController.current?.signal,
         });
-        setData(response.data);
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          return;
-        }
 
+        setData(response.data);
+        setItem(storageKey, { lastFetched: currentTime, data: response.data });
+      } catch (error) {
         setError('Something went wrong. Please try again later.');
       } finally {
         setIsLoading(false);
@@ -57,20 +49,11 @@ const useFetch = (url, options) => {
     fetchData();
 
     return () => {
-      abortControllerRef.current?.abort();
+      abortController.current?.abort();
     };
-  }, [options, storageKey, url]);
+  }, [url, options, storageKey]);
 
-  useEffect(() => {
-    if (!data) return;
-
-    setItem(storageKey, {
-      lastFetched: new Date().getTime(),
-      data,
-    });
-  }, [data, storageKey]);
-
-  return { data, error, isLoading };
+  return [data, isLoading, error];
 };
 
 export default useFetch;

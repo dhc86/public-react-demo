@@ -24,18 +24,20 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    const fetchMe = async () => {
+    const fetchToken = async () => {
       try {
         const response = await api.get('/api/me');
         setToken(response.data.accessToken);
-      } catch {
+      } catch (error) {
         setToken(null);
       }
     };
 
-    fetchMe();
+    // Fetch token when component mounts or token changes
+    fetchToken();
   }, []);
 
+  // Add token to Authorization header on each request
   useLayoutEffect(() => {
     const authInterceptor = api.interceptors.request.use((config) => {
       config.headers.Authorization =
@@ -50,6 +52,7 @@ const AuthProvider = ({ children }) => {
     };
   }, [token]);
 
+  // Refresh token when 403 is returned
   useLayoutEffect(() => {
     const refreshInterceptor = api.interceptors.response.use(
       (response) => response,

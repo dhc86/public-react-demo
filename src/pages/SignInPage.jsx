@@ -9,10 +9,8 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) {
-      navigate('/', { replace: true });
-    }
-  }, [navigate, token]);
+    if (token) navigate('/');
+  }, [token, navigate]);
 
   return (
     <div className='container flex h-screen items-center justify-center py-4'>

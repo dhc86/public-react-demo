@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { Spinner } from '@/components/ui';
 
-const DataRenderer = ({ children, error, isLoading }) => {
+const DataRenderer = ({ isLoading, error, children }) => {
   if (isLoading) {
     return (
       <div className='flex justify-center'>

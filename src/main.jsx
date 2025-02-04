@@ -2,11 +2,11 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import { seedLocalDatabase } from '@/api/data/seed';
-import AuthProvider from '@/components/AuthProvider';
 import ThemeProvider from '@/components/ThemeProvider';
-import { store } from '@/state/store';
+import Router from '@/router';
+import AuthProvider from './components/AuthProvider';
 
-import Router from './Router';
+import { store } from './state/store';
 
 import './index.css';
 

@@ -1,21 +1,16 @@
 import { DollarSign, Pin, Users } from 'lucide-react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import ListingCardImages from '@/components/ListingCardImages';
-import ListingFavoriteButton from '@/components/ListingFavoriteButton';
 import { Card, CardContent } from '@/components/ui';
+import { getImageUrl } from '@/lib/utils/images';
 
 const ListingCard = ({ listing }) => {
   return (
     <Link to={`/listings/${listing.id}`}>
       <Card className='w-[320px]'>
-        <div className='relative'>
-          <ListingCardImages listing={listing} />
-          <ListingFavoriteButton
-            className='absolute right-4 top-4'
-            listing={listing}
-          />
-        </div>
+        <ListingCardImages listing={listing} />
         <CardContent className='flex flex-col gap-2 p-4'>
           <h2 className='mb-2 text-xl font-semibold'>{listing.name}</h2>
           <div className='flex items-center gap-2'>

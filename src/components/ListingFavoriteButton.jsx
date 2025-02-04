@@ -5,19 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils/cn';
 import {
-  addFavoriteListing,
-  removeFavoriteListing,
-} from '@/state/listings/listingsSlice';
+  addFavouriteListing,
+  removeFavouriteListing,
+} from '@/state/slices/listingsSlice';
 
-const ListingFavoriteButton = ({ listing, className }) => {
-  const favoriteListingIds = useSelector(
-    (state) => state.listings.favoriteListingIds,
-  );
+const ListingFavoriteButton = ({ className, listing }) => {
+  const { favoriteListingsIds } = useSelector((state) => state.listings);
   const dispatch = useDispatch();
 
   const isFavorite = useMemo(
-    () => favoriteListingIds.includes(listing.id),
-    [listing, favoriteListingIds],
+    () => favoriteListingsIds.includes(listing.id),
+    [listing, favoriteListingsIds],
   );
 
   return (
@@ -29,9 +27,9 @@ const ListingFavoriteButton = ({ listing, className }) => {
         e.stopPropagation();
 
         if (isFavorite) {
-          dispatch(removeFavoriteListing(listing.id));
+          dispatch(removeFavouriteListing(listing.id));
         } else {
-          dispatch(addFavoriteListing(listing.id));
+          dispatch(addFavouriteListing(listing.id));
         }
       }}
     >

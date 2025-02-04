@@ -1,3 +1,5 @@
+import React from 'react';
+
 import ListingCard from '@/components/ListingCard';
 
 const ListingList = ({ listings }) => {

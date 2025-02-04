@@ -1,16 +1,16 @@
-import { useMemo } from 'react';
+import ListingList from '@/components/ListingList';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import ListingList from '@/components/ListingList';
-
 const ListingFavoritesPage = () => {
-  const { listings, favoriteListingIds } = useSelector(
+  const { listings, favoriteListingsIds } = useSelector(
     (state) => state.listings,
   );
 
   const favoriteListings = useMemo(
-    () => listings.filter((listing) => favoriteListingIds.includes(listing.id)),
-    [listings, favoriteListingIds],
+    () =>
+      listings.filter((listing) => favoriteListingsIds.includes(listing.id)),
+    [listings, favoriteListingsIds],
   );
 
   return (

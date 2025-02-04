@@ -353,9 +353,7 @@ const Devbar = () => {
       <div className='flex flex-row items-center justify-between gap-4 p-4'>
         <div className='flex flex-row items-center gap-3'>
           <img
-            src={getImageUrl(
-              theme === 'dark' ? '100w-logo.png' : '100w-logo-black.png',
-            )}
+            src={getImageUrl(theme === 'dark' ? 'dhc.png' : 'dhc-black.png')}
             alt='logo'
             className='h-[36px]'
           />
@@ -368,7 +366,7 @@ const Devbar = () => {
             <b>Project React</b>
             <br />
             <span className='text-sm text-muted-foreground'>
-              Made by <b>Cosden</b> Solutions
+              Made by <b>Diego Herrera</b>
             </span>
           </a>
         </div>

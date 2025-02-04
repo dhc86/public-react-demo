@@ -23,11 +23,12 @@ const SignInForm = () => {
 
   const {
     formState: { errors, isSubmitting },
-    handleSubmit,
     register,
+    handleSubmit,
     setError,
   } = useForm({
     resolver: zodResolver(signInFormSchema),
+    defaultValues: { email: 'demo@dhc.com', password: 'password' },
   });
 
   const onSubmit = async (data) => {
@@ -51,7 +52,12 @@ const SignInForm = () => {
         <Separator />
       </CardHeader>
       <CardContent>
-        <form className='flex flex-col gap-4'>
+        {errors.root && (
+          <div className='pb-4 text-center text-sm text-red-500'>
+            {errors.root.message}
+          </div>
+        )}
+        <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
           <div>
             <Input {...register('email')} placeholder='name@example.com' />
             {errors['email'] && (
@@ -70,15 +76,9 @@ const SignInForm = () => {
             )}
           </div>
 
-          <Button disabled={isSubmitting} onClick={handleSubmit(onSubmit)}>
+          <Button disabled={isSubmitting} type='submit'>
             {isSubmitting ? 'Loading...' : 'Sign In'}
           </Button>
-
-          {errors.root && (
-            <div className='text-center text-sm text-red-500'>
-              {errors.root.message}
-            </div>
-          )}
         </form>
       </CardContent>
     </Card>
