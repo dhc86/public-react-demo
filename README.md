@@ -10,9 +10,9 @@ Thank you for checking out my demo application! This project showcases various R
 5. Data Fetching & Filtering: Efficiently retrieves and processes data with filters.
 6. Forms & Validation: Utilizes React Hook Form for streamlined form handling.
 7. Routing: Implements React Router for smooth navigation across the application.
-8. Explore the demo to see these features in action!
 
-Learn React by building a real-world project.
+Explore the demo to see these features in action! 🚀
+
 
 ## Running the project
 
