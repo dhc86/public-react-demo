@@ -6,10 +6,9 @@ import BankAuthentication from '@/components/BankAccounts/ui/BankAuthentication'
 import BankMainMenu from '@/components/BankAccounts/ui/BankMainMenu';
 import BankUpdatePin from '@/components/BankAccounts/ui/BankUpdatePin';
 import { Card, CardContent } from '@/components/ui';
-import { deposit, pinUpdate, toggleAuthentication, toggleLocker, withdrawal } from '@/state/slices/bankSlice';
+import { deposit, depositAsync, pinUpdate, toggleAuthentication, toggleLocker, withdrawal } from '@/state/slices/bankSlice';
 
-
-
+// BankAccount component with Redux
 const AccountRedux = () => {
   const [canViewUpdatePIN, setCanViewUpdatePIN] = useState(false);
   const account = useSelector((state) => state.bank);
@@ -38,7 +37,8 @@ const AccountRedux = () => {
   };
 
   const handleOnDeposit = (amount) => {
-    dispatch(deposit(amount));
+    dispatch(depositAsync(amount));
+    // dispatch(deposit(amount));
   };
 
   const handleOnWithdraw = (amount) => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-
+// currently not used, but could be used for async actions related to count
 const countSlice = createSlice({
     name: 'count',
     initialState: 0,
@@ -11,16 +11,17 @@ const countSlice = createSlice({
     },
     extraReducers: (builder) => {
       builder
-          .addCase(incrementAsync, (state, action) => {
-              state.count = action.payload;
-          })
+        .addCase(incrementAsync.fulfilled, (state, action) => {
+            state.count = action.payload;
+        })
     }
 });
 
-export const incrementAsync = createAsyncThunk('count/incrementAsync', async () => {
-    const response = await new Promise((resolve) => setTimeout(() => resolve(), 1000));
-    console.log(response);
-    return 1;
+export const incrementAsync = createAsyncThunk(
+	'count/incrementAsync', 
+	async (amount) => {
+    await new Promise((resolve) => setTimeout(() => resolve(), 1000));
+    return amount;
 });
 
 export const { increment, decrement } = countSlice.actions;

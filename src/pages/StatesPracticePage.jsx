@@ -13,6 +13,7 @@ const StatesPracticePage = () => {
   return (
     <div className='container w-[800px] py-4'>
       <h1 className='flex justify-center'>State Practice</h1>
+      <p className='flex justify-center'>Use PIN: 0000</p>
       <Separator />
       <br />
       <div className='flex flex-wrap justify-center gap-8'>

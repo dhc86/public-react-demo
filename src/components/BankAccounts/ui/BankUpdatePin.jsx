@@ -12,7 +12,6 @@ const BankUpdatePin = ({ account, onPinUpdate }) => {
       setCurrentPin('');
       onPinUpdate(newPin);
     } else {
-      console.log(account.pin);
       alert('❌ Invalid PIN ❌');
     }
   };

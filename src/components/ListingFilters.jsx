@@ -7,7 +7,6 @@ const ListingFilters = ({ onChange }) => {
   const [dates, setDates] = useState();
   const [guests, setGuests] = useState(0);
   const [search, setSearch] = useState('');
-  console.log('ListingFilters...');
   const handleSubmit = () => {
     onChange({ dates, guests, search });
   };
