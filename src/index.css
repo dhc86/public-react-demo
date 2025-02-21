@@ -109,3 +109,15 @@
     @apply rounded bg-secondary px-1 font-normal text-secondary-foreground;
   }
 }
+
+@media only screen and (max-width: 700px) {
+  /* For mobile phones: */
+  .dev-panel {
+    display: none;
+  }
+
+  .view-panel {
+    width: 100%;
+    margin: 0;
+  }
+}

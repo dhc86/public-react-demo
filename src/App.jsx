@@ -9,12 +9,11 @@ const App = () => {
 
   return (
     <>
-      <div className='fixed bottom-0 left-0 top-0'>
-        {/* <Devbar /> */}
+      <div className='dev-panel fixed bottom-0 left-0 top-0'>
         <DeveloperInfo />
       </div>
 
-      <div className='ml-[600px]'>
+      <div className='view-panel ml-[600px]' style={{ minWidth: '50px' }}>
         {token && <Navbar />}
         <Outlet />
       </div>
@@ -23,4 +22,3 @@ const App = () => {
 };
 
 export default App;
-
