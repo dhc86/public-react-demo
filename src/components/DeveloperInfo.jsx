@@ -1,6 +1,3 @@
-import { getImageUrl } from '@/lib/utils/images';
-
-import { Card, CardContent, Separator } from '@/components/ui';
 import {
   Check,
   Github,
@@ -10,6 +7,9 @@ import {
   NotebookText,
   Phone,
 } from 'lucide-react';
+
+import { Card, CardContent, Separator } from '@/components/ui';
+import { getImageUrl } from '@/lib/utils/images';
 
 const DeveloperInfo = () => {
   return (
@@ -139,7 +139,7 @@ const DeveloperInfo = () => {
               </a>
 
               <a
-                href='https://app.enhancv.com/share/6d906802'
+                href='https://dhcresume.tiiny.site'
                 target='_blank'
                 rel='noreferrer'
               >
